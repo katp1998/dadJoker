@@ -51,20 +51,10 @@
             </div>
         </div>
 
-        @guest
-            <div class="mt-8 text-center">
-                <p class="text-base-content/60 mb-4">Create an account to save your favourite jokes that caught your attention!</p>
-                <div class="flex gap-3 justify-center">
-                    <a href="{{ route('register') }}" class="btn btn-primary">Register</a>
-                    <a href="{{ route('login') }}" class="btn btn-ghost">Sign In</a>
-                </div>
-            </div>
-        @endguest
-
         @auth
             <div class="mt-6 flex gap-3 justify-center">
-                <a href="{{ route('home') }}" class="btn btn-ghost btn-sm">View My Jokes →</a>
-                <a href="{{ route('jokes.search') }}" class="btn btn-ghost btn-sm">Search Jokes →</a>
+                <a href="{{ route('home') }}" class="btn btn-ghost btn-sm">View My Jokes</a>
+                <a href="{{ route('jokes.search') }}" class="btn btn-ghost btn-sm">Search Jokes</a>
             </div>
         @endauth
     </div>

@@ -22,13 +22,6 @@
                 🤣 DadJoker
             </a>
         </div>
-        <div class="navbar-center hidden md:flex gap-1">
-            @auth
-                <a href="{{ route('home') }}" class="btn btn-ghost btn-sm">Home</a>
-                <a href="{{ route('jokes.create') }}" class="btn btn-ghost btn-sm">Create</a>
-                <a href="{{ route('jokes.search') }}" class="btn btn-ghost btn-sm">Search</a>
-            @endauth
-        </div>
         <div class="navbar-end gap-2">
             @auth
                 <span class="text-sm hidden sm:inline opacity-70">{{ auth()->user()->name }}</span>
