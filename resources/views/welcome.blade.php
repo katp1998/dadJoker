@@ -93,7 +93,7 @@
                 const res = await fetch('https://icanhazdadjoke.com/', {
                     headers: {
                         'Accept': 'application/json',
-                        'User-Agent': 'DadJoker App (https://github.com/dadjoker)',
+                        'User-Agent': 'DadJoker App (https://github.com/katp1998)',
                     },
                 });
                 const data = await res.json();
