@@ -34,7 +34,7 @@ class JokeController extends Controller
         $validated = $request->validate([
             'joke' => 'required|string|max:500',
         ]);
-        auth()->user()->joke()->create($validated);
+        auth()->user()->jokes()->create($validated);
 
         return redirect('/home')->with('success', 'Joke saved!');
     }
