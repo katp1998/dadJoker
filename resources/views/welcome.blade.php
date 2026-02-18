@@ -42,7 +42,7 @@
                             Save
                         </button>
                     @else
-                        <a href="{{ route('login') }}" class="btn btn-success">
+                        <a href="{{ route('login') }}" class="btn btn-success" id="save-after-login">
                             <span class="material-symbols-outlined" style="font-size: 18px;">bookmark</span>
                             Save
                         </a>
@@ -128,6 +128,17 @@
                     saveBtn.disabled = false;
                 }
             });
+        }
+
+        if(saveGuestBtn && !IS_AUTH) {
+            saveGuestBtn.addEventListener('click', (e) => {
+                if(currentJoke){
+                    sessionStorage.setItem('pendingJoke', JSON.stringify({
+                        joke: currentJoke.joke,
+                        api_id: currentJoke.id
+                    }))
+                }
+            })
         }
 
         fetchRandomJoke();

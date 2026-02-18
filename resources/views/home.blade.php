@@ -139,6 +139,33 @@
             }
         });
 
+        (async function checkForPendingJoke() {
+            const pendingJoke = sessionStorage.getItem('pendingJoke');
+            if (pendingJoke){
+                try {
+                    const jokeData = JSON.parse(pendingJoke);
+                    const res = await fetch(SAVE_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': CSRF,
+                        'Accept': 'application/json',
+                    },
+                    body: JSON.stringify(jokeData),
+                });
+                sessionStorage.removeItem('pendingJoke');
+                
+                if (res.ok) {
+                    window.location.reload();
+                }
+
+                } catch (error) {
+                    console.error('Failed to save pending joke:', error);
+                    sessionStorage.removeItem('pendingJoke');
+                }
+            }
+        })
+
         fetchRandomJoke();
     </script>
 </x-layout>
