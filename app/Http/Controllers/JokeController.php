@@ -14,8 +14,8 @@ class JokeController extends Controller
      */
     public function index()
     {
-        $jokes = Joke::with('user')
-            ->whereNotNull('user_id')
+        $jokes = auth()->user()->jokes()
+            ->with('user')
             ->latest()
             ->get();
 
