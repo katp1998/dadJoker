@@ -18,8 +18,8 @@ class JokeController extends Controller
             ->whereNotNull('user_id')
             ->latest()
             ->get();
-        
-        return view('home', ['jokes'=>$jokes]);
+
+        return view('home', ['jokes' => $jokes]);
     }
 
     public function create(){
@@ -32,11 +32,11 @@ class JokeController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'joke'=>'required|string|max:500'
+            'joke' => 'required|string|max:500',
         ]);
         auth()->user()->joke()->create($validated);
 
-        return redirect('/home')->with('success', 'Joke saved');
+        return redirect('/home')->with('success', 'Joke saved!');
     }
 
     /**
@@ -45,27 +45,27 @@ class JokeController extends Controller
     public function saveFromApi(Request $request)
     {
         $validated = $request->validate([
-            'joke'=>'required|string|max:500',
-            'api_id'=>'nullable|string|max:50'
+            'joke'   => 'required|string|max:500',
+            'api_id' => 'nullable|string|max:50',
         ]);
 
         //prevent duplicates
-        if(!empty($validated['api_id'])){
+        if (!empty($validated['api_id'])) {
             $exists = auth()->user()->jokes()
                 ->where('api_id', $validated['api_id'])
                 ->exists();
-        }
 
-        if($exists){
-            return response()->json(['message'=>'already in saved!']);
+            if ($exists) {
+                return response()->json(['message' => 'Already in your collection!'], 200);
+            }
         }
 
         $joke = auth()->user()->jokes()->create([
-            'joke'=>$validated['joke'],
-            'api_id'=>$validated['api_id'] ?? null
+            'joke'   => $validated['joke'],
+            'api_id' => $validated['api_id'] ?? null,
         ]);
 
-        return response()->json(['message'=>'Joke saved!', 'joke' => $joke], 201);
+        return response()->json(['message' => 'Joke saved!', 'joke' => $joke], status: 201);
     }
 
     public function edit(Joke $joke)
@@ -84,7 +84,7 @@ class JokeController extends Controller
             'joke'=>'required|string|max:500'
         ]);
         $joke->update($validated);
-        return redirect('/home')->with('success', 'joke updated!');
+        return redirect('/home')->with('success', 'Joke updated!');
     }
 
     /**
@@ -94,6 +94,7 @@ class JokeController extends Controller
     {
         $this->authorize('delete', $joke);
         $joke->delete();
+        return redirect('/home')->with('success', 'Joke deleted!');
     }
 
     public function search()

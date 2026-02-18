@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Models\SavedJoke;
 
 class User extends Authenticatable
 {
@@ -48,8 +47,8 @@ class User extends Authenticatable
         ];
     }
 
-    public function savedJokes(): HasMany
+    public function jokes(): HasMany
     {
-        return $this->hasMany(SavedJoke::class);
+        return $this->hasMany(Joke::class);
     }
 }
