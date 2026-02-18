@@ -27,3 +27,5 @@ composer run dev
     - https://tailwindcss.com/docs/styling-with-utility-classes
     - https://laravel.com/docs/12.x/routing
     - https://daisyui.com/docs/themes/ 
+
+This project can be found in https://github.com/katp1998/dadJoker
