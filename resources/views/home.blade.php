@@ -49,7 +49,6 @@
             </div>
         </div>
 
-        <!-- Saved Feed -->
         <div class="space-y-4">
             <h2 class="text-xl font-semibold">Saved Jokes</h2>
             @forelse ($jokes as $joke)
